@@ -1,13 +1,12 @@
-import NavbarMenu from "../../Component/NavbarMenu/full-menu";
-import FooterMenu from "../../Component/Footer";
-import HeaderMenu from "../../Component/Header/profile-head";
+import NavbarMenu from "../../../Component/NavbarMenu/full-menu";
+import FooterMenu from "../../../Component/Footer";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-let url = "https://rich-colt-cuff.cyclic.app/recipes";
+let url = "https://rich-colt-cuff.cyclic.app";
 let token =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkxZjFkZDI3LWQ1MWQtNDlmYy05ZDdhLWY2ZmI1ZjdjNGM3NiIsImVtYWlsIjoiZHhjODA5NDNAb21laWUuY29tIiwiZnVsbG5hbWUiOiJCdWRpIiwicGhvdG8iOiJudWxsIiwidmVyaWZpZWQiOnRydWUsIm90cCI6IjE2Mjg0MSIsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTI0VDIwOjQ0OjA4LjI1M1oiLCJkZWxldGVkX2F0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY3ODMyNjIxNywiZXhwIjoxNjgwOTE4MjE3fQ.G3nex7YE1SDIgURbGZ7AmCffjXR1ypQyhjnutqbHAnw";
-export default function Profile() {
+export default function Home() {
   const [data, setData] = useState();
   useEffect(() => {
     getData();
@@ -15,7 +14,7 @@ export default function Profile() {
 
   const getData = () => {
     axios
-      .get(url + `/my-recipe`, {
+      .get(url + `/recipes`, {
         headers: {
           Authorization: token,
         },
@@ -34,27 +33,70 @@ export default function Profile() {
       <div className="container text-poppins ms-5">
         <NavbarMenu />
         <header>
-        <div className="d-flex justify-content-between mb-5 mx-5 text-poppins">
-          <div className="py-3 pr-5 pl-4 col-4 navbar navbar-expand d-flex flex-row text-dark justify-content-end navtext yellow-gradient-left">
-            <img className="mr-3" src="https://dummyimage.com/64x64.jpg?text=picture" alt="" 
-            style={{maxWidth: "64px", maxHeight: "64px", borderRadius: "50%"}}/>
-            <div className="col">
-              <div className="row">
-                <a className="navtext" href="/">User Name</a>
+          <div className="container col-12 ">
+            <div className="row">
+              <div className="col-5">
+                <h1 className="display-6" style={{ color: "#2e266f" }}>
+                  Discover Recipe &amp; Delicious Food
+                </h1>
               </div>
-              <div className="row">
-                <a className="navtext" href="/">10 Recipes</a>
-              </div>
-            </div>
-          </div>
-          <div className="py-3 col-4 navbar navbar-expand d-flex flex-row text-dark justify-content-end px-5 navtext">
-            <div className="col">
-              <div className="row justify-content-end">
-                <a className="navtext" href="/">21 February 2023</a>
+              <div className="col-4">
+                <div className=""></div>
               </div>
             </div>
           </div>
-        </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-5">
+                <div className="input-group mb-3 h-100">
+                  <input
+                    type="text"
+                    className="form-control w-100"
+                    placeholder="Search"
+                  />
+                </div>
+              </div>
+              <div className="col-2 px-0">
+                <div className="input-group mb-3 h-100">
+                  <button
+                    className="btn btn-warning ms-3 text-white w-100"
+                    type="button"
+                  >
+                    Search
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-5 ps-0">
+                <div className="input-group mb-3">
+                  <button
+                    className="btn btn-warning ms-3 mt-3 text-white"
+                    type="button"
+                  >
+                    New
+                  </button>
+                  <button
+                    className="btn btn-warning ms-3 mt-3 text-white"
+                    type="button"
+                  >
+                    Popular
+                  </button>
+                  <button className="btn btn-success ms-3 mt-3" type="button">
+                    Vegetarian
+                  </button>
+                  <button className="btn btn-success ms-3 mt-3" type="button">
+                    Breakfast
+                  </button>
+                </div>
+              </div>
+              <div className="col-4">
+                <div className=""></div>
+              </div>
+            </div>
+          </div>
         </header>
         <section>
           {data?.map((item, index) => (
@@ -96,10 +138,6 @@ export default function Profile() {
                         />
                         {item.author}
                       </label>
-                      <div className="d-flex justify-content-between">
-                        <button className="btn btn-info col-6 me-5 text-white">Edit</button>
-                        <button className="btn btn-danger col-6 me-5 text-white">Delete</button>
-                      </div>
                     </div>
                   </div>
                 </div>
