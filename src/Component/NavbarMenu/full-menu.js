@@ -13,7 +13,7 @@ export default function NavbarMenu() {
           Home
         </Link>
         <Link to={"/add"} className="navtext">
-          Add
+          Add Recipe
         </Link>
         <Link to={"/profile"} className="navtext">
           Profile
