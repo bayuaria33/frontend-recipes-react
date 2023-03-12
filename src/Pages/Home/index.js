@@ -21,6 +21,11 @@ export default function Home() {
           </h1>
         </section>
         <Landing2 />
+        <section className="d-flex">
+          <h1 className="display-6 p-3 yellow-gradient-left ml-5 my-5">
+            Popular Recipes
+          </h1>
+        </section>
         <section className="justify-content-center">
           <Landing3 />
         </section>
