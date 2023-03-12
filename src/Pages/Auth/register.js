@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-let url = "https://rich-colt-cuff.cyclic.app/auth/register/user";
+let url = `${process.env.REACT_APP_API_URL}/auth/register/user`;
 
 export default function Register() {
   const [credential, setCredential] = useState({

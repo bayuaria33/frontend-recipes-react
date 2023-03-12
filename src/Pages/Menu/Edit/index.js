@@ -5,7 +5,7 @@ import axios from "axios";
 import NavbarMenu from "../../../Component/NavbarMenu/full-menu";
 import FooterMenu from "../../../Component/Footer";
 import jwtDecode from "jwt-decode";
-let url = "https://rich-colt-cuff.cyclic.app/";
+let url = `${process.env.REACT_APP_API_URL}/`;
 let token =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkxZjFkZDI3LWQ1MWQtNDlmYy05ZDdhLWY2ZmI1ZjdjNGM3NiIsImVtYWlsIjoiZHhjODA5NDNAb21laWUuY29tIiwiZnVsbG5hbWUiOiJCdWRpIiwicGhvdG8iOiJudWxsIiwidmVyaWZpZWQiOnRydWUsIm90cCI6IjE2Mjg0MSIsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTI0VDIwOjQ0OjA4LjI1M1oiLCJkZWxldGVkX2F0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY3ODMyNjIxNywiZXhwIjoxNjgwOTE4MjE3fQ.G3nex7YE1SDIgURbGZ7AmCffjXR1ypQyhjnutqbHAnw";
 export default function Edit() {
@@ -149,7 +149,6 @@ export default function Edit() {
                   <select
                     className="form-select" onChange={handleChange} name="categories_id"
                   >
-                    {/* TODO CATEGORIES, UPDATE */}
                     {categories?.map((categories) => (
                       <option value={categories.id} key={categories.id}>
                         {categories.category_name}

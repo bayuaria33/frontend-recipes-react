@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useState} from "react";
 import { Link } from "react-router-dom";
-let url = "https://rich-colt-cuff.cyclic.app/auth/login/";
+let url = `${process.env.REACT_APP_API_URL}/auth/login/`;
 //sct47890@nezid.com
 //123
 export default function Login() {

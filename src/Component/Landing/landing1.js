@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 export default function Landing1() {
   const imageStyle = {
     maxWidth: "800px"
@@ -19,12 +20,12 @@ export default function Landing1() {
             <h1 className="display-6 text-black">
               Discover Recipe & Delicious food
             </h1>
-            <a
-              href="/search"
+            <Link
+              to={"/search"}
               className="text-start btn btn-light w-100 mt-3"
             >
               Search Restaurants, Foods 
-            </a>
+            </Link>
           </form>
         </div>
       </div>
