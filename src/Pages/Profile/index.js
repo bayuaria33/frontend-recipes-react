@@ -1,5 +1,6 @@
 import NavbarMenu from "../../Component/NavbarMenu/full-menu";
 import FooterMenu from "../../Component/Footer";
+import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
@@ -95,14 +96,11 @@ export default function Profile() {
                     />
                   </div>
                   <div className="col-5">
-                    <a
-                      href="/menu/detailMenu.html"
-                      className="text-title"
-                      style={{ color: "black" }}
-                    >
+                  <Link to={`../Menu/Detail/${item.id}`} className="text-title" style={{textDecoration: "none", color:"black"}}>
                       {item.title}
-                    </a>
+                  </Link>
                     <p className="text-content">{item.ingredients}</p>
+                    <p className="text-content">{item.category}</p>
                     <div className="bg-warning text-center text-white p-1 rounded">
                       10 Likes - 12 Comments - 10 Bookmarks
                     </div>
@@ -121,7 +119,7 @@ export default function Profile() {
                         {item.author}
                       </label>
                       <div className="d-flex justify-content-between">
-                        <button className="btn btn-info col-6 me-5 text-white">Edit</button>
+                        <Link className="btn btn-info col-6 me-5 text-white" to={`../Menu/Edit/${item.id}`}>Edit</Link>
                         <button className="btn btn-danger col-6 me-5 text-white" onClick={()=>confirmDelete(item.id)}>Delete</button>
                       </div>
                     </div>

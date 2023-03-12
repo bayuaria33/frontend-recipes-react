@@ -2,8 +2,9 @@ import NavbarMenu from "../../../Component/NavbarMenu/full-menu";
 import FooterMenu from "../../../Component/Footer";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-let url = "https://rich-colt-cuff.cyclic.app";
+let url = "https://rich-colt-cuff.cyclic.app/recipes";
 let token =
   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkxZjFkZDI3LWQ1MWQtNDlmYy05ZDdhLWY2ZmI1ZjdjNGM3NiIsImVtYWlsIjoiZHhjODA5NDNAb21laWUuY29tIiwiZnVsbG5hbWUiOiJCdWRpIiwicGhvdG8iOiJudWxsIiwidmVyaWZpZWQiOnRydWUsIm90cCI6IjE2Mjg0MSIsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTI0VDIwOjQ0OjA4LjI1M1oiLCJkZWxldGVkX2F0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY3ODMyNjIxNywiZXhwIjoxNjgwOTE4MjE3fQ.G3nex7YE1SDIgURbGZ7AmCffjXR1ypQyhjnutqbHAnw";
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
 
   const getData = () => {
     axios
-      .get(url + `/recipes`, {
+      .get(url, {
         headers: {
           Authorization: token,
         },
@@ -101,47 +102,44 @@ export default function Home() {
         <section>
           {data?.map((item, index) => (
             <div key={index + 1}>
-              <div className="container mt-5 yellow-gradient-right">
-                <div className="row">
-                  <div className="col-4">
-                    <img
-                      src={item.photo}
-                      alt=""
-                      className="img-thumbnail rounded"
-                      style={{ width: "350px", height: "350px" }}
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="col-5">
-                    <a
-                      href="/menu/detailMenu.html"
-                      className="text-title"
-                      style={{ color: "black" }}
-                    >
-                      {item.title}
-                    </a>
-                    <p className="text-content">{item.ingredients}</p>
-                    <div className="bg-warning text-center text-white p-1 rounded">
-                      10 Likes - 12 Comments - 10 Bookmarks
+                <div className="container mt-5 yellow-gradient-right">
+                  <div className="row">
+                    <div className="col-4">
+                      <img
+                        src={item.photo}
+                        alt=""
+                        className="img-thumbnail rounded"
+                        style={{ width: "350px", height: "350px" }}
+                        loading="lazy"
+                      />
                     </div>
                     <div className="col-5">
-                      <label className="text-content">
-                        <img
-                          className="me-3 my-3"
-                          src="https://dummyimage.com/64x64.jpg?text=picture"
-                          alt=""
-                          style={{
-                            maxWidth: "64px",
-                            maxHeight: "64px",
-                            borderRadius: "50%",
-                          }}
-                        />
-                        {item.author}
-                      </label>
+                    <Link to={`../Menu/Detail/${item.id}`} className="text-title" style={{textDecoration: "none", color:"black"}}>
+                      {item.title}
+                  </Link>
+                      <p className="text-content">{item.ingredients}</p>
+                      <p className="text-content">{item.category}</p>
+                      <div className="bg-warning text-center text-white p-1 rounded">
+                        10 Likes - 12 Comments - 10 Bookmarks
+                      </div>
+                      <div className="col-5">
+                        <label className="text-content">
+                          <img
+                            className="me-3 my-3"
+                            src="https://dummyimage.com/64x64.jpg?text=picture"
+                            alt=""
+                            style={{
+                              maxWidth: "64px",
+                              maxHeight: "64px",
+                              borderRadius: "50%",
+                            }}
+                          />
+                          {item.author}
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
           ))}
         </section>
