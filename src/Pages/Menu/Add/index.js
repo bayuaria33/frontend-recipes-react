@@ -5,8 +5,7 @@ import FooterMenu from "../../../Component/Footer";
 import jwtDecode from "jwt-decode";
 export default function Add() {
   let url = `${process.env.REACT_APP_API_URL}/`;
-  let token =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkxZjFkZDI3LWQ1MWQtNDlmYy05ZDdhLWY2ZmI1ZjdjNGM3NiIsImVtYWlsIjoiZHhjODA5NDNAb21laWUuY29tIiwiZnVsbG5hbWUiOiJCdWRpIiwicGhvdG8iOiJudWxsIiwidmVyaWZpZWQiOnRydWUsIm90cCI6IjE2Mjg0MSIsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTI0VDIwOjQ0OjA4LjI1M1oiLCJkZWxldGVkX2F0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY3ODMyNjIxNywiZXhwIjoxNjgwOTE4MjE3fQ.G3nex7YE1SDIgURbGZ7AmCffjXR1ypQyhjnutqbHAnw";
+  let token =`${process.env.REACT_APP_API_TOKEN}`;
   const decoded_token = jwtDecode(token)
   // console.log(decoded_token.id);
 
@@ -32,7 +31,7 @@ export default function Add() {
       console.log("fetched categories=", data);
     };
     fetchcategories();
-  }, []);
+  }, [token, url]);
 
   const handleChange = (e) => {
     setInputData({

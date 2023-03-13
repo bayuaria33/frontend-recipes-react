@@ -6,8 +6,7 @@ import { useState, useEffect } from "react";
 import HeaderMenu from "../../../Component/Header/profile-head";
 
 let url = `${process.env.REACT_APP_API_URL}/recipes`;
-let token =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkxZjFkZDI3LWQ1MWQtNDlmYy05ZDdhLWY2ZmI1ZjdjNGM3NiIsImVtYWlsIjoiZHhjODA5NDNAb21laWUuY29tIiwiZnVsbG5hbWUiOiJCdWRpIiwicGhvdG8iOiJudWxsIiwidmVyaWZpZWQiOnRydWUsIm90cCI6IjE2Mjg0MSIsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTI0VDIwOjQ0OjA4LjI1M1oiLCJkZWxldGVkX2F0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY3ODMyNjIxNywiZXhwIjoxNjgwOTE4MjE3fQ.G3nex7YE1SDIgURbGZ7AmCffjXR1ypQyhjnutqbHAnw";
+let token =`${process.env.REACT_APP_API_TOKEN}`;
 export default function Detail() {
   const [data, setData] = useState();
   const { id } = useParams();
@@ -56,11 +55,11 @@ export default function Detail() {
                 </p>
               </div>
               <div className="d-flex justify-content-start mx-5">
-                <button className="btn btn-warning mr-3 pt-3">
-                  <box-icon name="bookmark" color="#fff"></box-icon>
+                <button className="btn btn-warning me-3 pt-3">
+                  Bookmark
                 </button>
-                <button className="btn btn-warning mr-3 pt-3">
-                  <box-icon name="like" color="#fff"></box-icon>
+                <button className="btn btn-warning me-3 pt-3">
+                  Like
                 </button>
               </div>
               <div className="d-flex justify-content-start mt-5 yellow-gradient-top">

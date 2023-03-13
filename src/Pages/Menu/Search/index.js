@@ -5,13 +5,36 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 let url = `${process.env.REACT_APP_API_URL}/recipes`;
-let token =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkxZjFkZDI3LWQ1MWQtNDlmYy05ZDdhLWY2ZmI1ZjdjNGM3NiIsImVtYWlsIjoiZHhjODA5NDNAb21laWUuY29tIiwiZnVsbG5hbWUiOiJCdWRpIiwicGhvdG8iOiJudWxsIiwidmVyaWZpZWQiOnRydWUsIm90cCI6IjE2Mjg0MSIsImNyZWF0ZWRfYXQiOiIyMDIzLTAyLTI0VDIwOjQ0OjA4LjI1M1oiLCJkZWxldGVkX2F0IjpudWxsLCJyb2xlIjoidXNlciIsImlhdCI6MTY3ODMyNjIxNywiZXhwIjoxNjgwOTE4MjE3fQ.G3nex7YE1SDIgURbGZ7AmCffjXR1ypQyhjnutqbHAnw";
+let token =`${process.env.REACT_APP_API_TOKEN}`;
 export default function Home() {
   const [data, setData] = useState();
+  const [search, setSearch] = useState({
+    search:""
+  });
   useEffect(() => {
     getData();
   }, []);
+
+  const handleChange = (e) => {
+    setSearch({
+      ...search,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const searchMenu = (e) =>{
+    e.preventDefault()
+    axios.get(url + `/?search=${search.search}`, {
+      headers: {
+        Authorization: token,
+      },
+    }).then((res)=>{
+      setData(res.data.data)
+    }).catch((error)=>{
+      console.log(error);
+    })
+    
+  }
 
   const getData = () => {
     axios
@@ -54,6 +77,8 @@ export default function Home() {
                     type="text"
                     className="form-control w-100"
                     placeholder="Search"
+                    name="search"
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -62,6 +87,7 @@ export default function Home() {
                   <button
                     className="btn btn-warning ms-3 text-white w-100"
                     type="button"
+                    onClick={searchMenu}
                   >
                     Search
                   </button>

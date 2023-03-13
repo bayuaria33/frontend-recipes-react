@@ -8,14 +8,17 @@ export default function NavbarMenu() {
 
   return (
     <nav className="d-flex p-0 text-poppins justify-content-between py-3 mx-5">
-      <div className="py-3 col-4 navbar text-dark justify-content-between navtext">
-        <Link to={"/"} className="navtext">
+      <div className="py-3 col-6 navbar text-dark justify-content-between navtext">
+        <Link to={"/"} className="navtext" style={{textDecoration: "none"}}>
           Home
         </Link>
-        <Link to={"/add"} className="navtext">
+        <Link to={"/add"} className="navtext" style={{textDecoration: "none"}}>
           Add Recipe
         </Link>
-        <Link to={"/profile"} className="navtext">
+        <Link to={"/search"} className="navtext" style={{textDecoration: "none"}}>
+          Search
+        </Link>
+        <Link to={"/profile"} className="navtext" style={{textDecoration: "none"}}>
           Profile
         </Link>
       </div>
