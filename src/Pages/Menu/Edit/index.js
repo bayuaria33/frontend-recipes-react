@@ -177,7 +177,7 @@ export default function Edit() {
             role="alert"
             onClick={() => setAlert(false)}
           >
-            Input data success
+            Update data success
           </div>
         )}
       </div>

@@ -85,6 +85,7 @@ export default function Add() {
                   <input
                     type="file"
                     name="photo"
+                    accept="image/*"
                     placeholder="photo"
                     required
                     onChange={handlePhoto}
