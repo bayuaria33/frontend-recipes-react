@@ -36,9 +36,9 @@ export default function Home() {
     
   }
 
-  const getData = () => {
+  const getNew = () =>{
     axios
-      .get(url, {
+      .get(url + `/?sort=desc`, {
         headers: {
           Authorization: token,
         },
@@ -47,7 +47,24 @@ export default function Home() {
         console.log(res);
         setData(res.data.data);
       })
-      .then((err) => {
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  const getData = () => {
+    axios
+      .get(url, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log("Got new");
+        console.log(res);
+        setData(res.data.data);
+      })
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -101,7 +118,7 @@ export default function Home() {
                 <div className="input-group mb-3">
                   <button
                     className="btn btn-warning ms-3 mt-3 text-white"
-                    type="button"
+                    type="button" onClick={getNew}
                   >
                     New
                   </button>
