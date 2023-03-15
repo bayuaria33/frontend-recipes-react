@@ -1,40 +1,61 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-let url = `${process.env.REACT_APP_API_URL}/auth/register/user`;
+import { registerUser } from "../../Storage/Action/auth";
+import { useDispatch } from "react-redux";
 
 export default function Register() {
-  const [credential, setCredential] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const handleChange = (e) => {
-    setCredential({
-      ...credential,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const registerForm = (e) => {
+  const postData = (e) => {
     e.preventDefault();
-    axios
-      .post(url, credential, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        console.log("Register success");
-        console.log(res.data.data);
-      })
-      .catch((err) => {
-        console.log("Register fail");
-        console.log(err);
-      });
+    console.log(name);
+    console.log(email);
+    console.log(password);
+    let data = {
+      name,
+      email,
+      password,
+    };
+    dispatch(registerUser(data, navigate));
   };
+
+
+  // const [credential, setCredential] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  // });
+
+  // const handleChange = (e) => {
+  //   setCredential({
+  //     ...credential,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
+  // const registerForm = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post(url, credential, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log("Register success");
+  //       console.log(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("Register fail");
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <div className="container pale-bg">
@@ -49,7 +70,7 @@ export default function Register() {
                 </p>
               </div>
 
-              <form className="col" onSubmit={registerForm}>
+              <form className="col" onSubmit={postData}>
                 <div className="form-group">
                   <label>Name</label>
                   <input
@@ -57,7 +78,8 @@ export default function Register() {
                     className="form-control"
                     placeholder="Enter your name"
                     name="name"
-                    onChange={handleChange}
+                    onChange={(e)=>setName(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -67,7 +89,8 @@ export default function Register() {
                     className="form-control"
                     placeholder="Enter your email"
                     name="email"
-                    onChange={handleChange}
+                    onChange={(e)=>setEmail(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -77,7 +100,8 @@ export default function Register() {
                     className="form-control"
                     placeholder="Enter your password"
                     name="password"
-                    onChange={handleChange}
+                    onChange={(e)=>setPassword(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="d-flex">
@@ -86,6 +110,7 @@ export default function Register() {
                       type="checkbox"
                       className="me-3 my-3"
                       style={{ accentColor: "#efc81a" }}
+                      required
                     />
                     I agree to terms & conditions
                   </label>

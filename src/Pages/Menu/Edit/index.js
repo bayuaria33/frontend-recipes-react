@@ -20,7 +20,6 @@ export default function Edit() {
   });
   const [photo, setPhoto] = useState();
   const [alert, setAlert] = useState(false);
-  // TODO FIGURE OUT HOW TO GET RECIPE BY ITS ID
 
   useEffect(() => {
     const fetchdata = async () => {

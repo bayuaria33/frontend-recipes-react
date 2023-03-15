@@ -6,19 +6,43 @@ import Login from "../Pages/Auth/login";
 import Register from "../Pages/Auth/register";
 import Search from "../Pages/Menu/Search/index";
 import Edit from "../Pages/Menu/Edit/";
-import Detail from "../Pages/Menu/Detail/"
+import Detail from "../Pages/Menu/Detail/";
+import AuthChecker from "../Component/AuthChecker";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="home" replace="true" />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/add" element={<Add />} />
+
+        <Route
+          path="/profile"
+          element={
+            <AuthChecker>
+              <Profile />
+            </AuthChecker>
+          }
+        />
+
+        <Route
+          path="/add"
+          element={
+            <AuthChecker>
+              <Add />
+            </AuthChecker>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/Menu/edit/:id" element={<Edit />} />
+        <Route
+          path="/Menu/edit/:id"
+          element={
+            <AuthChecker>
+              <Edit />
+            </AuthChecker>
+          }
+        />
         <Route path="/Menu/Detail/:id" element={<Detail />} />
       </Routes>
     </BrowserRouter>

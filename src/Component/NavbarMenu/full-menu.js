@@ -1,47 +1,97 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { React } from "react";
+import { Link, useNavigate } from "react-router-dom";
 export default function NavbarMenu() {
   const imageStyle = {
     maxWidth: "64px",
     borderRadius: "50%",
   };
 
-  return (
-    <nav className="d-flex p-0 text-poppins justify-content-between py-3 mx-5">
-      <div className="py-3 col-6 navbar text-dark justify-content-between navtext">
-        <Link to={"/"} className="navtext" style={{textDecoration: "none"}}>
-          Home
+  const name = localStorage.getItem("name");
+  const photo = localStorage.getItem("photo")
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.clear();
+    window.location.reload(false);
+    navigate("/home");
+  };
+
+
+  if(!name){
+    return (
+      <nav className="d-flex p-0 text-poppins justify-content-between py-3 mx-5 mb-5">
+      <div className="py-3 col-4 navbar text-dark justify-content-between navtext">
+        <Link to={"/login"} className="navtext" style={{textDecoration: "none"}}>
+          Login
         </Link>
-        <Link to={"/add"} className="navtext" style={{textDecoration: "none"}}>
-          Add Recipe
+        <Link to={"/register"} className="navtext" style={{textDecoration: "none"}}>
+          Register
         </Link>
         <Link to={"/search"} className="navtext" style={{textDecoration: "none"}}>
-          Search
+          Search Menu
         </Link>
-        <Link to={"/profile"} className="navtext" style={{textDecoration: "none"}}>
-          Profile
-        </Link>
-      </div>
-      <div className="col-3 navbar text-dark yellow-gradient-left">
-        <img
-          className="mr-3"
-          src="https://dummyimage.com/64x64.jpg?text=picture"
-          alt=""
-          style={imageStyle}
-        />
-        <div className="col">
-          <div className="row">
-            <a className="navtext text-black" href="/">
-              User Name
-            </a>
-          </div>
-          <div className="row">
-            <a className="navtext text-black" href="/">
-              Logout
-            </a>
-          </div>
-        </div>
       </div>
     </nav>
-  );
+    )
+  }else{
+    return (
+      <nav className="d-flex p-0 text-poppins justify-content-between py-3 mx-5">
+        <div className="py-3 col-6 navbar text-dark justify-content-between navtext">
+          <Link to={"/"} className="navtext" style={{ textDecoration: "none" }}>
+            Home
+          </Link>
+          <Link
+            to={"/add"}
+            className="navtext"
+            style={{ textDecoration: "none" }}
+          >
+            Add Recipe
+          </Link>
+          <Link
+            to={"/search"}
+            className="navtext"
+            style={{ textDecoration: "none" }}
+          >
+            Search
+          </Link>
+          <Link
+            to={"/profile"}
+            className="navtext"
+            style={{ textDecoration: "none" }}
+          >
+            Profile
+          </Link>
+        </div>
+        <div className="col-3 navbar text-dark yellow-gradient-left">
+          <img
+            className="mr-3"
+            src={photo ? photo : "https://dummyimage.com/64x64.jpg?text=picture"}
+            alt=""
+            style={imageStyle}
+          />
+          <div className="col">
+            <div className="row">
+              <Link
+                className="navtext text-black"
+                to={"/profile"}
+                style={{ textDecoration: "none" }}
+              >
+                {name ? name : "Profile"}
+              </Link>
+            </div>
+            <div className="row">
+              <Link
+                className="navtext text-black"
+                style={{ textDecoration: "none" }}
+                onClick={() => logout()}
+              >
+                Logout
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+
 }

@@ -169,7 +169,8 @@ export default function Home() {
                         <label className="text-content">
                           <img
                             className="me-3 my-3"
-                            src="https://dummyimage.com/64x64.jpg?text=picture"
+                            src="https://s3-alpha-sig.figma.com/img/a3be/733c/a5ad1b65265f9059e5b18198a92a7df8?Expires=1679875200&Signature=Ykj5e5rWL9EHOscIa3lQSa3aO480HU1OXqLqoZzdl8k0XrNkzLuDZVqetzvBzv1HWUd8UBMdVCHWUM-z-9CjOrVLs6H0FEkZ7QV~Py~SuKaz6VViyQhbG-jfB0whZ-GTmT43PUwDFP8Zcp371sL3Sp3PX0FZbN6rzUCC-2XNF6f9M09PMhokqWJkCkm9zJvu5Fcf28WakcISdpFtGxF7dFw23nAl4Kii94pHBwtq8gU2YeuctZpwIBZ-v~-MrOyKvZg~wPoLM8PczUAzTH-Mnky-Z93jYFEZBpGny4g4TMzE8Ag9g0Z2LmMt4U3qQHAgrZPGctqV5prnu-s4Vsu1lg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                            
                             alt=""
                             style={{
                               maxWidth: "64px",

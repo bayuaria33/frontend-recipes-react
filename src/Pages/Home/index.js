@@ -1,8 +1,8 @@
-import NavbarMenu from "../../Component/NavbarMenu/partial-landing";
+import NavbarMenu from "../../Component/NavbarMenu/full-menu";
 import FooterMenu from "../../Component/Footer";
-import Landing1 from "../../Component/Landing/landing1";
-import Landing2 from "../../Component/Landing/landing2";
-import Landing3 from "../../Component/Landing/landing3";
+import {Landing1} from "../../Component/Landing/landingMenu";
+import {Landing2} from "../../Component/Landing/landingMenu";
+import {Landing3} from "../../Component/Landing/landingMenu";
 export default function Home() {
   return (
     <>

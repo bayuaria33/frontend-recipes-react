@@ -81,6 +81,17 @@ export default function Profile() {
           </div>
         </div>
         </header>
+        <div className="container">
+          <div className="row">
+            <div className="col-7 yellow-gradient-bottom">
+              <div className="d-flex justify-content-between ">
+                <Link to={""} className="text-title mr-5 current" style={{textDecoration: "none"}}>Recipes</Link>
+                <Link to={""} className="text-title mr-5 not-current" style={{textDecoration: "none"}}>Bookmarked</Link>
+                <Link to={""} className="text-title mr-5 not-current" style={{textDecoration: "none"}}>Liked</Link>
+              </div>
+            </div>
+          </div>
+        </div>
         <section>
           {data?.map((item, index) => (
             <div key={index + 1}>
