@@ -1,13 +1,15 @@
 import { useState, useEffect} from "react";
 import axios from "axios";
-import NavbarMenu from "../../../Component/NavbarMenu/full-menu";
+import NavbarMenu from "../../../Component/Navbar/NavbarMenu";
 import FooterMenu from "../../../Component/Footer";
 import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 export default function Add() {
   let url = `${process.env.REACT_APP_API_URL}/`;
   let token =`${process.env.REACT_APP_API_TOKEN}`;
   const decoded_token = jwtDecode(token)
   // console.log(decoded_token.id);
+  const navigate = useNavigate()
 
   const [inputData, setInputData] = useState({
     title: "",
@@ -64,6 +66,9 @@ export default function Add() {
         console.log("input data success");
         console.log(res);
         setAlert(true);
+        setTimeout(() => {
+          navigate("/profile")
+        }, 2000);
       })
       .catch((err) => {
         console.log("input data fail");

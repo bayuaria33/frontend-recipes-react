@@ -7,8 +7,6 @@ import { loginUser } from "../../Storage/Action/auth";
 // let url = `${process.env.REACT_APP_API_URL}/auth/login/`;
 //sct47890@nezid.com, dxc80943@omeie.com
 //123
-//TODO protect routes,
-//TODO change embedded token from env to localstorage 
 export default function Login() {
   const navigate = useNavigate()
   const dispatch = useDispatch()

@@ -1,4 +1,4 @@
-import NavbarMenu from "../../Component/NavbarMenu/full-menu";
+import NavbarMenu from "../../Component/Navbar/NavbarMenu";
 import FooterMenu from "../../Component/Footer";
 import {Landing1} from "../../Component/Landing/landingMenu";
 import {Landing2} from "../../Component/Landing/landingMenu";

@@ -10,7 +10,7 @@ export const loginUser = (data,navigate) => async (dispatch)=> {
         localStorage.setItem("name",user.fullname)
         localStorage.setItem("photo",user.photo)
         dispatch({type:'USER_LOGIN_SUCCESS',payload:user})
-        navigate('/profile')
+        navigate('/home')
         console.log("User Login success");
     } catch(err){
         console.log("User Login failed")

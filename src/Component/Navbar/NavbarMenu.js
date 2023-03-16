@@ -5,9 +5,8 @@ export default function NavbarMenu() {
     maxWidth: "64px",
     borderRadius: "50%",
   };
-
   const name = localStorage.getItem("name");
-  const photo = localStorage.getItem("photo")
+  const photo = localStorage.getItem("photo");
   const navigate = useNavigate();
 
   const logout = () => {
@@ -16,24 +15,35 @@ export default function NavbarMenu() {
     navigate("/home");
   };
 
-
-  if(!name){
+  if (!name) {
     return (
       <nav className="d-flex p-0 text-poppins justify-content-between py-3 mx-5 mb-5">
-      <div className="py-3 col-4 navbar text-dark justify-content-between navtext">
-        <Link to={"/login"} className="navtext" style={{textDecoration: "none"}}>
-          Login
-        </Link>
-        <Link to={"/register"} className="navtext" style={{textDecoration: "none"}}>
-          Register
-        </Link>
-        <Link to={"/search"} className="navtext" style={{textDecoration: "none"}}>
-          Search Menu
-        </Link>
-      </div>
-    </nav>
-    )
-  }else{
+        <div className="py-3 col-4 navbar text-dark justify-content-between navtext">
+          <Link
+            to={"/login"}
+            className="navtext"
+            style={{ textDecoration: "none" }}
+          >
+            Login
+          </Link>
+          <Link
+            to={"/register"}
+            className="navtext"
+            style={{ textDecoration: "none" }}
+          >
+            Register
+          </Link>
+          {/* <Link
+            to={"/search"}
+            className="navtext"
+            style={{ textDecoration: "none" }}
+          >
+            Search Menu
+          </Link> */}
+        </div>
+      </nav>
+    );
+  } else {
     return (
       <nav className="d-flex p-0 text-poppins justify-content-between py-3 mx-5">
         <div className="py-3 col-6 navbar text-dark justify-content-between navtext">
@@ -64,8 +74,10 @@ export default function NavbarMenu() {
         </div>
         <div className="col-3 navbar text-dark yellow-gradient-left">
           <img
-            className="mr-3"
-            src={photo ? photo : "https://dummyimage.com/64x64.jpg?text=picture"}
+            className="me-3"
+            src={
+              photo ? photo : "https://dummyimage.com/64x64.jpg?text=picture"
+            }
             alt=""
             style={imageStyle}
           />
@@ -93,5 +105,38 @@ export default function NavbarMenu() {
       </nav>
     );
   }
+}
 
+export function NavbarProfile() {
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-7 yellow-gradient-bottom">
+          <div className="d-flex justify-content-between ">
+            <Link
+              to={""}
+              className="text-title mr-5 current"
+              style={{ textDecoration: "none" }}
+            >
+              Recipes
+            </Link>
+            <Link
+              to={""}
+              className="text-title mr-5 not-current"
+              style={{ textDecoration: "none" }}
+            >
+              Bookmarked
+            </Link>
+            <Link
+              to={""}
+              className="text-title mr-5 not-current"
+              style={{ textDecoration: "none" }}
+            >
+              Liked
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

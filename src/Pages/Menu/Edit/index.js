@@ -1,14 +1,15 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import NavbarMenu from "../../../Component/NavbarMenu/full-menu";
+import NavbarMenu from "../../../Component/Navbar/NavbarMenu";
 import FooterMenu from "../../../Component/Footer";
 import jwtDecode from "jwt-decode";
 let url = `${process.env.REACT_APP_API_URL}/`;
-let token =`${process.env.REACT_APP_API_TOKEN}`;
 export default function Edit() {
+  let token = "Bearer " + localStorage.getItem("token");
   //   .put/ searchBy=id&search=${id}
+  const navigate = useNavigate();
   const decoded_token = jwtDecode(token);
   const { id } = useParams();
   const [categories, setCategories] = useState();
@@ -44,7 +45,7 @@ export default function Edit() {
     };
     fetchdata(id);
     fetchcategories();
-  }, [id]);
+  }, [id, token]);
 
   const handleChange = (e) => {
     setInputData({
@@ -52,7 +53,6 @@ export default function Edit() {
       [e.target.name]: e.target.value,
     });
   };
-
 
   const handlePhoto = (e) => {
     setPhoto(e.target.files[0]);
@@ -68,7 +68,7 @@ export default function Edit() {
     formData.append("photo", photo);
     console.log(formData);
     axios
-      .put(url +`/recipes/${id}`, formData, {
+      .put(url + `/recipes/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: token,
@@ -78,6 +78,9 @@ export default function Edit() {
         console.log("update data success");
         console.log(res);
         setAlert(true);
+        setTimeout(() => {
+          navigate("/profile");
+        }, 2000);
       })
       .catch((err) => {
         console.log("update data fail");
@@ -145,7 +148,9 @@ export default function Edit() {
                 <div className="form-group mt-3 w-25">
                   Category
                   <select
-                    className="form-select" onChange={handleChange} name="categories_id"
+                    className="form-select"
+                    onChange={handleChange}
+                    name="categories_id"
                   >
                     {categories?.map((categories) => (
                       <option value={categories.id} key={categories.id}>

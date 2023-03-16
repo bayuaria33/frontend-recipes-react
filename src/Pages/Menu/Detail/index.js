@@ -1,16 +1,15 @@
-import NavbarMenu from "../../../Component/NavbarMenu/full-menu";
+import NavbarMenu from "../../../Component/Navbar/NavbarMenu";
 import FooterMenu from "../../../Component/Footer";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import HeaderMenu from "../../../Component/Header/profile-head";
+import { RecipeHeader } from "../../../Component/Header/HeaderMenu";
 
 let url = `${process.env.REACT_APP_API_URL}/recipes`;
 let token =`${process.env.REACT_APP_API_TOKEN}`;
 export default function Detail() {
   const [data, setData] = useState();
   const { id } = useParams();
-
   useEffect(() => {
     const getData = () => {
       axios
@@ -23,7 +22,7 @@ export default function Detail() {
           console.log(res);
           setData(res.data.data);
         })
-        .then((err) => {
+        .catch((err) => {
           console.log(err);
         });
     };
@@ -34,10 +33,10 @@ export default function Detail() {
     <>
       <div className="container text-poppins ms-5">
         <NavbarMenu />
-        <header>
-          <HeaderMenu />
-        </header>
         <section>
+        <header>
+          <RecipeHeader data={data}></RecipeHeader>          
+        </header>
           <section>
             {data?.map((item,index)=>(                
             <div key={index + 1} className="col-12 d-flex flex-column justify-content-start px-5">
