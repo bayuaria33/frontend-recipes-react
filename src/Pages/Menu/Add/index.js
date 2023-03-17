@@ -6,7 +6,7 @@ import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 export default function Add() {
   let url = `${process.env.REACT_APP_API_URL}/`;
-  let token =`${process.env.REACT_APP_API_TOKEN}`;
+  let token = "Bearer " + localStorage.getItem("token");
   const decoded_token = jwtDecode(token)
   // console.log(decoded_token.id);
   const navigate = useNavigate()

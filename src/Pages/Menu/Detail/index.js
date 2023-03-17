@@ -6,8 +6,8 @@ import { useState, useEffect } from "react";
 import { RecipeHeader } from "../../../Component/Header/HeaderMenu";
 
 let url = `${process.env.REACT_APP_API_URL}/recipes`;
-let token =`${process.env.REACT_APP_API_TOKEN}`;
 export default function Detail() {
+  let token = "Bearer " + localStorage.getItem("token");
   const [data, setData] = useState();
   const { id } = useParams();
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Detail() {
         });
     };
     getData();
-  }, [id]);
+  }, [id, token]);
 
   return (
     <>
