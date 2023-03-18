@@ -1,36 +1,40 @@
 import NavbarMenu from "../../../Component/Navbar/NavbarMenu";
 import FooterMenu from "../../../Component/Footer";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { RecipeSearch } from "../../../Component/Recipe";
 import { SearchHeader } from "../../../Component/Header/HeaderMenu";
+import { useDispatch, useSelector } from "react-redux";
+import { getRecipe, searchRecipe, sortRecipe } from "../../../Storage/Action/recipe";
 
-let url = `${process.env.REACT_APP_API_URL}/recipes`;
+
 export default function Home() {
-  let token = "Bearer " + localStorage.getItem("token");
-  const [data, setData] = useState();
+  const dispatch = useDispatch()
+  // const variable = useSelector((state)=>state.NAMEOFSTATEINREDUCER)
   const [search, setSearch] = useState({
     search:""
   });
+  
+  const data = useSelector((state)=>state.get_recipe)
+  const searchData = useSelector((state)=>state.search_recipe)
+  const sortData = useSelector((state)=>state.sort_recipe)
+  const [position,setPosition] = useState(false)
+  
+  useEffect(()=>{
+    dispatch(getRecipe())
+  },[dispatch])
+
+  useEffect(()=>{
+    setPosition(data)
+  },[data])
+
   useEffect(() => {
-    const getData = () => {
-      axios
-        .get(url, {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((res) => {
-          console.log("Got new");
-          console.log(res);
-          setData(res.data.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getData();
-  }, [token]);
+    setPosition(searchData)
+  }, [searchData]);
+
+  useEffect(() => {
+    setPosition(sortData)
+  }, [sortData]);
+
 
   const handleChange = (e) => {
     setSearch({
@@ -39,34 +43,14 @@ export default function Home() {
     });
   };
 
+  
   const searchMenu = (e) =>{
     e.preventDefault()
-    axios.get(url + `/?search=${search.search}`, {
-      headers: {
-        Authorization: token,
-      },
-    }).then((res)=>{
-      setData(res.data.data)
-    }).catch((error)=>{
-      console.log(error);
-    })
-    
+    dispatch(searchRecipe(search.search))
   }
 
   const getNew = () =>{
-    axios
-      .get(url + `/?sort=desc`, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-        setData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(sortRecipe())
   }
 
 
@@ -75,7 +59,7 @@ export default function Home() {
       <div className="container text-poppins ms-5">
         <NavbarMenu />
         <SearchHeader getNew={getNew} searchMenu={searchMenu} handleChange={handleChange}></SearchHeader>
-        <RecipeSearch data={data}></RecipeSearch>
+        <RecipeSearch data={position}></RecipeSearch>
       </div>
       <FooterMenu />
     </>

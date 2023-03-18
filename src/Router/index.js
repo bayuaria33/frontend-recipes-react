@@ -7,10 +7,12 @@ import Register from "../Pages/Auth/register";
 import Search from "../Pages/Menu/Search/index";
 import Edit from "../Pages/Menu/Edit/";
 import Detail from "../Pages/Menu/Detail/";
-import AuthChecker from "../Component/AuthChecker";
+import AuthChecker from "../Component/utils/AuthChecker";
+import ScrollToTop from "../Component/utils/ScrollToTop";
 function App() {
   return (
     <BrowserRouter>
+    <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Navigate to="home" replace="true" />} />
         <Route path="/home" element={<Home />} />

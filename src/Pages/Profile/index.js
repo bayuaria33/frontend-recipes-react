@@ -2,60 +2,35 @@ import NavbarMenu, { NavbarProfile } from "../../Component/Navbar/NavbarMenu";
 import FooterMenu from "../../Component/Footer";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { ProfileHeader } from "../../Component/Header/HeaderMenu";
 import { RecipeProfile } from "../../Component/Recipe";
+import { deleteRecipe, getUserRecipe } from "../../Storage/Action/recipe";
+import { useDispatch, useSelector } from "react-redux";
+
 
 export default function Profile() {
-  const [data, setData] = useState();
   const [show, setShow] = useState(false);
   const [selected, setSelected] = useState();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const dispatch = useDispatch()
   const confirmDelete = (id) => {
     setSelected(id);
     handleShow();
   };
 
-  let url = `${process.env.REACT_APP_API_URL}/recipes`;
-  let token = "Bearer " + localStorage.getItem("token");
+  const data = useSelector((state)=>state.profile_recipe)
+  useEffect(()=>{
+    dispatch(getUserRecipe())
+  },[dispatch])
 
-  useEffect(() => {
-    const getData = () => {
-      axios
-        .get(url + `/my-recipe?sort=desc`, {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((res) => {
-          console.log(res);
-          setData(res.data.data);
-        })
-        .then((err) => {
-          console.log(err);
-        });
-    };
-    getData();
-  }, [show, url, token]);
 
   const deleteData = (id) => {
-    axios
-      .delete(url + `/${id}`, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((res) => {
-        console.log("Successfully deleted data id = ", id);
-        console.log(res);
-        handleClose();
-      })
-      .then((err) => {
-        console.log(err);
-      });
+    dispatch(deleteRecipe(id)).then(()=>{
+      handleClose()
+      dispatch(getUserRecipe())
+    })
   };
 
   return (

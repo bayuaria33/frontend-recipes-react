@@ -1,26 +1,27 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import NavbarMenu from "../../../Component/Navbar/NavbarMenu";
 import FooterMenu from "../../../Component/Footer";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { addRecipe } from "../../../Storage/Action/recipe";
+import { useDispatch, useSelector } from "react-redux";
 export default function Add() {
   let url = `${process.env.REACT_APP_API_URL}/`;
   let token = "Bearer " + localStorage.getItem("token");
-  const decoded_token = jwtDecode(token)
-  // console.log(decoded_token.id);
-  const navigate = useNavigate()
-
+  const decoded_token = jwtDecode(token);
+  const navigate = useNavigate();
   const [inputData, setInputData] = useState({
     title: "",
     ingredients: "",
     categories_id: 0,
-    users_id: decoded_token.id
+    users_id: decoded_token.id,
   });
+  const addData = useSelector((state) => state.add_recipe);
   const [categories, setCategories] = useState();
   const [photo, setPhoto] = useState();
   const [alert, setAlert] = useState(false);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchcategories = async () => {
       const result = await axios.get(url + `/categories`, {
@@ -55,25 +56,12 @@ export default function Add() {
     formData.append("users_id", inputData.users_id);
     formData.append("photo", photo);
     console.log(formData);
-    axios
-      .post(url + `/recipes`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: token,
-        },
-      })
-      .then((res) => {
-        console.log("input data success");
-        console.log(res);
-        setAlert(true);
-        setTimeout(() => {
-          navigate("/profile")
-        }, 2000);
-      })
-      .catch((err) => {
-        console.log("input data fail");
-        console.log(err);
-      });
+    dispatch(addRecipe(formData)).then(() => {
+      setAlert(true);
+      setTimeout(() => {
+        navigate("/profile");
+      }, 2000);
+    });
   };
 
   return (
@@ -124,7 +112,9 @@ export default function Add() {
                 <div className="form-group mt-3 w-25">
                   Category
                   <select
-                    className="form-select" onChange={handleChange} name="categories_id"
+                    className="form-select"
+                    onChange={handleChange}
+                    name="categories_id"
                   >
                     {categories?.map((categories) => (
                       <option value={categories.id} key={categories.id}>
@@ -143,6 +133,12 @@ export default function Add() {
                   </button>
                 </div>
               </form>
+              {addData.isLoading && (
+                <div
+                  className="spinner-border text-warning ms-5 mt-5"
+                  role="status"
+                ></div>
+              )}
             </section>
           </div>
         </section>

@@ -5,11 +5,17 @@ import axios from "axios";
 import NavbarMenu from "../../../Component/Navbar/NavbarMenu";
 import FooterMenu from "../../../Component/Footer";
 import jwtDecode from "jwt-decode";
+import { editRecipe, getRecipeById } from "../../../Storage/Action/recipe";
+import { useDispatch, useSelector } from "react-redux";
 let url = `${process.env.REACT_APP_API_URL}/`;
 export default function Edit() {
   let token = "Bearer " + localStorage.getItem("token");
   //   .put/ searchBy=id&search=${id}
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const dataRecipe = useSelector((state)=>state.get_recipe_by_id)
+  const dataEdit = useSelector((state)=>state.edit_recipe)
+
   const decoded_token = jwtDecode(token);
   const { id } = useParams();
   const [categories, setCategories] = useState();
@@ -23,16 +29,23 @@ export default function Edit() {
   const [alert, setAlert] = useState(false);
 
   useEffect(() => {
-    const fetchdata = async () => {
-      const result = await axios.get(url + `/recipes/${id}`, {
-        headers: {
-          Authorization: token,
-        },
-      });
-      const data = result.data.data[0];
-      setInputData(data);
-      console.log("fetched current recipe=", data);
-    };
+    dispatch(getRecipeById(id))
+  }, [dispatch,id]);
+
+  useEffect(()=>{
+    if(dataRecipe.data){
+      setInputData({
+        ...inputData,
+        title: dataRecipe.data[0].title,
+        ingredients: dataRecipe.data[0].ingredients,
+        categories_id: dataRecipe.data[0].categories_id,
+        photo:dataRecipe.data[0].photo
+      })
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[dataRecipe])
+
+  useEffect(() => {
     const fetchcategories = async () => {
       const result = await axios.get(url + `/categories`, {
         headers: {
@@ -43,15 +56,15 @@ export default function Edit() {
       setCategories(data);
       console.log("fetched categories=", data);
     };
-    fetchdata(id);
     fetchcategories();
-  }, [id, token]);
+  }, [token]);
 
   const handleChange = (e) => {
     setInputData({
       ...inputData,
       [e.target.name]: e.target.value,
     });
+    console.log("inputData = " , inputData);
   };
 
   const handlePhoto = (e) => {
@@ -67,16 +80,8 @@ export default function Edit() {
     formData.append("categories_id", parseInt(inputData.categories_id));
     formData.append("photo", photo);
     console.log(formData);
-    axios
-      .put(url + `/recipes/${id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: token,
-        },
-      })
-      .then((res) => {
-        console.log("update data success");
-        console.log(res);
+    dispatch(editRecipe(formData,id))
+      .then(() => {
         setAlert(true);
         setTimeout(() => {
           navigate("/profile");
@@ -169,6 +174,12 @@ export default function Edit() {
                   </button>
                 </div>
               </form>
+              {dataEdit.isLoading && (
+                <div
+                  className="spinner-border text-warning ms-5 mt-5"
+                  role="status"
+                ></div>
+              )}
             </section>
           </div>
         </section>

@@ -2,13 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const RecipeProfile = ({ data, confirmDelete }) => {
-  if (!data) {
-    return <>Loading . . .</>;
-  }
-
   return (
     <section>
-      {data?.map((item, index) => (
+      {data.isLoading && <div className="spinner-border text-warning ms-5 mt-5" role="status"></div>}
+      {data.data?.map((item, index) => (
         <div key={index + 1}>
           <div className="container mt-5 yellow-gradient-right">
             <div className="row">
@@ -77,13 +74,10 @@ export const RecipeProfile = ({ data, confirmDelete }) => {
 };
 
 export const RecipeSearch = ({ data }) => {
-  if (!data) {
-    return <>Loading . . .</>;
-  }
-
   return (
     <section>
-      {data?.map((item, index) => (
+      {data.isLoading && <div className="spinner-border text-warning ms-5 mt-5" role="status"></div>}
+      {data.data?.map((item, index) => (
         <div key={index + 1}>
           <div className="container mt-5 yellow-gradient-right">
             <div className="row">
