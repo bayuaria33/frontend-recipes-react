@@ -5,7 +5,7 @@ import axios from "axios";
 import NavbarMenu from "../../../Component/Navbar/NavbarMenu";
 import FooterMenu from "../../../Component/Footer";
 import jwtDecode from "jwt-decode";
-import { editRecipe, getRecipeById } from "../../../Storage/Action/recipe";
+import { editRecipe, getDetailRecipe } from "../../../Storage/Action/recipe";
 import { useDispatch, useSelector } from "react-redux";
 let url = `${process.env.REACT_APP_API_URL}/`;
 export default function Edit() {
@@ -13,7 +13,7 @@ export default function Edit() {
   //   .put/ searchBy=id&search=${id}
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const dataRecipe = useSelector((state)=>state.get_recipe_by_id)
+  const dataRecipe = useSelector((state)=>state.get_detail)
   const dataEdit = useSelector((state)=>state.edit_recipe)
 
   const decoded_token = jwtDecode(token);
@@ -29,7 +29,7 @@ export default function Edit() {
   const [alert, setAlert] = useState(false);
 
   useEffect(() => {
-    dispatch(getRecipeById(id))
+    dispatch(getDetailRecipe(id))
   }, [dispatch,id]);
 
   useEffect(()=>{

@@ -4,19 +4,19 @@ const initialState = {
     isLoading:false
 }
 
-const sort_recipe = (state=initialState,action)=>{
-    if(action.type === 'SORT_RECIPE_PENDING'){
+const get_my_recipe_count = (state=initialState,action)=>{
+    if(action.type === 'GET_MY_RECIPE_COUNT_PENDING'){
         return{
             ...state,
             isLoading:true
         }
-    } else if(action.type === 'SORT_RECIPE_SUCCESS'){
+    } else if(action.type === 'GET_MY_RECIPE_COUNT_SUCCESS'){
         return{
             ...state,
             data:action.payload,
             isLoading:false
         }
-    } else if(action.type === 'SORT_RECIPE_FAILED'){
+    } else if(action.type === 'GET_MY_RECIPE_COUNT_FAILED'){
         return{
             ...state,
             errorMessage:action.payload,
@@ -27,4 +27,4 @@ const sort_recipe = (state=initialState,action)=>{
     }
 }
 
-export default sort_recipe
+export default get_my_recipe_count

@@ -7,12 +7,6 @@ const imageStyle = {
 
 export const RecipeHeader = ({data}) => {
 
-  if(!data){
-    return(
-      <>Loading . . .</>
-    )
-  }
-
   const [obj] = data.map(item=>item)
   const author = obj.author;
   const user_photo = obj.user_photo;
@@ -136,7 +130,7 @@ export const ProfileHeader = () => {
   );
 };
 
-export const SearchHeader = ({handleChange, searchMenu, getNew}) => {
+export const SearchHeader = ({handleSearch,handleSort,searchHandler}) => {
   return(
     <header>
     <div className="container col-12 ">
@@ -160,7 +154,7 @@ export const SearchHeader = ({handleChange, searchMenu, getNew}) => {
               className="form-control w-100"
               placeholder="Search"
               name="search"
-              onChange={handleChange}
+              onChange={handleSearch}
             />
           </div>
         </div>
@@ -169,7 +163,7 @@ export const SearchHeader = ({handleChange, searchMenu, getNew}) => {
             <button
               className="btn btn-warning ms-3 text-white w-100"
               type="button"
-              onClick={searchMenu}
+              onClick={searchHandler}
             >
               Search
             </button>
@@ -183,7 +177,7 @@ export const SearchHeader = ({handleChange, searchMenu, getNew}) => {
           <div className="input-group mb-3">
             <button
               className="btn btn-warning ms-3 mt-3 text-white"
-              type="button" onClick={getNew}
+              type="button" onClick={handleSort}
             >
               New
             </button>

@@ -10,7 +10,6 @@ export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const dataDetail = useSelector((state) => state.get_detail);
-  //TODO
   useEffect(() => {
     dispatch(getDetailRecipe(id));
   }, [id, dispatch]);

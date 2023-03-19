@@ -2,7 +2,7 @@ import axios from "axios";
 
 let url = `${process.env.REACT_APP_API_URL}/recipes`;
 
-export const getRecipe = () => async (dispatch) => {
+export const getRecipe = (search, sort, page) => async (dispatch) => {
   const token = "Bearer " + localStorage.getItem("token");
   let config = {
     headers: {
@@ -11,7 +11,7 @@ export const getRecipe = () => async (dispatch) => {
   };
   try {
     dispatch({ type: "GET_RECIPE_PENDING" });
-    const result = await axios.get(url, config);
+    const result = await axios.get(url + `?search=${search}&sort=${sort}&page=${page}&limit=5`, config);
     const recipe = result.data.data
     dispatch({ type: "GET_RECIPE_SUCCESS", payload: recipe });
   } catch (err) {
@@ -21,7 +21,20 @@ export const getRecipe = () => async (dispatch) => {
   }
 };
 
-export const getRecipeById = (id) => async (dispatch) => {
+export const getTotalRecipe = () => async (dispatch) => {
+  try {
+    dispatch({ type: "GET_RECIPE_COUNT_PENDING" });
+    const result = await axios.get(url + `/count-recipe`);
+    const recipe = result.data.data
+    dispatch({ type: "GET_RECIPE_COUNT_SUCCESS", payload: recipe });
+  } catch (err) {
+    dispatch({ type: "GET_RECIPE_COUNT_FAILED", payload: err.response.data.message });
+    console.log("Get Recipe error");
+    console.log(err);
+  }
+};
+
+export const getMyTotalRecipe = () => async (dispatch) => {
   const token = "Bearer " + localStorage.getItem("token");
   let config = {
     headers: {
@@ -29,12 +42,12 @@ export const getRecipeById = (id) => async (dispatch) => {
     },
   };
   try {
-    dispatch({ type: "GET_RECIPEbyID_PENDING" });
-    const result = await axios.get(url + `/${id}`, config);
+    dispatch({ type: "GET_MY_RECIPE_COUNT_PENDING" });
+    const result = await axios.get(url + `/count-my-recipe`,config);
     const recipe = result.data.data
-    dispatch({ type: "GET_RECIPEbyID_SUCCESS", payload: recipe });
+    dispatch({ type: "GET_MY_RECIPE_COUNT_SUCCESS", payload: recipe });
   } catch (err) {
-    dispatch({ type: "GET_RECIPEbyID_FAILED", payload: err.response.data.message });
+    dispatch({ type: "GET_MY_RECIPE_COUNT_FAILED", payload: err.response.data.message });
     console.log("Get Recipe error");
     console.log(err);
   }
@@ -59,7 +72,7 @@ export const getDetailRecipe = (id) => async (dispatch) => {
   }
 };
 
-export const getUserRecipe = () => async (dispatch) => {
+export const getUserRecipe = (page) => async (dispatch) => {
   const token = "Bearer " + localStorage.getItem("token");
   let config = {
     headers: {
@@ -68,57 +81,12 @@ export const getUserRecipe = () => async (dispatch) => {
   };
   try {
     dispatch({ type: "GET_USER_RECIPE_PENDING" });
-    const result = await axios.get(url + `/my-recipe`, config);
+    const result = await axios.get(url + `/my-recipe?page=${page}&limit=5`, config);
     const recipe = result.data.data
     dispatch({ type: "GET_USER_RECIPE_SUCCESS", payload: recipe });
   } catch (err) {
     dispatch({ type: "GET_USER_RECIPE_FAILED", payload: err.response.data.message });
     console.log("Get User Recipe error");
-    console.log(err);
-  }
-};
-
-
-export const searchRecipe = (query) => async (dispatch) => {
-  const token = "Bearer " + localStorage.getItem("token");
-  let config = {
-    headers: {
-      Authorization: token,
-    },
-  };
-  try {
-    dispatch({ type: "SEARCH_RECIPE_PENDING" });
-    const result = await axios.get(url + `/?search=${query}`, config);
-    const recipe = result.data.data;
-    dispatch({ type: "SEARCH_RECIPE_SUCCESS", payload: recipe });
-  } catch (err) {
-    dispatch({
-      type: "SEARCH_RECIPE_FAILED",
-      payload: err.response.data.message,
-    });
-    console.log("Search Recipe error");
-    console.log(err);
-  }
-};
-
-export const sortRecipe = (query) => async (dispatch) => {
-  const token = "Bearer " + localStorage.getItem("token");
-  let config = {
-    headers: {
-      Authorization: token,
-    },
-  };
-  try {
-    dispatch({ type: "SORT_RECIPE_PENDING" });
-    const result = await axios.get(url + `/?sort=desc`, config);
-    const recipe = result.data.data;
-    dispatch({ type: "SORT_RECIPE_SUCCESS", payload: recipe });
-  } catch (err) {
-    dispatch({
-      type: "SORT_RECIPE_FAILED",
-      payload: err.response.data.message,
-    });
-    console.log("Sort Recipe error");
     console.log(err);
   }
 };

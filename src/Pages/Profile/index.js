@@ -5,7 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import { useState, useEffect } from "react";
 import { ProfileHeader } from "../../Component/Header/HeaderMenu";
 import { RecipeProfile } from "../../Component/Recipe";
-import { deleteRecipe, getUserRecipe } from "../../Storage/Action/recipe";
+import { deleteRecipe, getUserRecipe, getMyTotalRecipe } from "../../Storage/Action/recipe";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -15,22 +15,47 @@ export default function Profile() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch()
+  const data = useSelector((state)=>state.profile_recipe)
+  const dataTotal = useSelector((state)=>state.get_my_recipe_count)
+  const [total, setTotal] = useState()
+  const [page, setPage] = useState(1);
+  const [numFrom, setNumFrom] = useState()
+  const [numTo, setNumTo] = useState()
+
+
+
+
   const confirmDelete = (id) => {
     setSelected(id);
     handleShow();
   };
-
-  const data = useSelector((state)=>state.profile_recipe)
   useEffect(()=>{
-    dispatch(getUserRecipe())
-  },[dispatch])
+    dispatch(getUserRecipe(page))
+    dispatch(getMyTotalRecipe())
+  },[dispatch,page])
 
+  useEffect(()=>{
+    setTotal(dataTotal.data)
+    console.log(dataTotal);
+    setNumFrom((page * 5) - (5-1))
+    setNumTo(5 * page)
+  },[dataTotal, page])
 
   const deleteData = (id) => {
     dispatch(deleteRecipe(id)).then(()=>{
       handleClose()
       dispatch(getUserRecipe())
     })
+  };
+
+  const pageNext = () => {
+    setPage((x) => x + 1);
+    window.scrollTo(0, 0);
+  };
+
+  const pagePrevious = () => {
+    setPage((x) => x - 1);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -42,6 +67,26 @@ export default function Profile() {
         </header>
         <NavbarProfile></NavbarProfile>
         <RecipeProfile data={data} confirmDelete={confirmDelete}></RecipeProfile>
+        <div className="col text-center text-content mt-3">
+          {page > 1 && (
+            <button
+              onClick={pagePrevious}
+              className="btn btn-warning mx-3 text-white"
+            >
+              Previous
+            </button>
+          )}
+          Show {numFrom} - {numTo} from {total}
+          
+          {numTo < total && (
+            <button
+              onClick={pageNext}
+              className="btn btn-warning mx-3 text-white"
+            >
+              Next
+            </button>
+          )}
+        </div>
       </div>
       <FooterMenu />
       <Modal show={show} onHide={() => handleClose()}>
