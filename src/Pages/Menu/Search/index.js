@@ -5,6 +5,7 @@ import { RecipeSearch } from "../../../Component/Recipe";
 import { SearchHeader } from "../../../Component/Header/HeaderMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipe, getTotalRecipe } from "../../../Storage/Action/recipe";
+import Pagination from "../../../Component/Pagination";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -65,26 +66,14 @@ export default function Home() {
           searchHandler={searchHandler}
         ></SearchHeader>
         <RecipeSearch data={data}></RecipeSearch>
-        <div className="col text-center text-content mt-3">
-          {page > 1 && (
-            <button
-              onClick={pagePrevious}
-              className="btn btn-warning mx-3 text-white"
-            >
-              Previous
-            </button>
-          )}
-          Show {numFrom} - {numTo} from {total}
-          
-          {numTo < total && (
-            <button
-              onClick={pageNext}
-              className="btn btn-warning mx-3 text-white"
-            >
-              Next
-            </button>
-          )}
-        </div>
+        <Pagination
+          page={page}
+          numFrom={numFrom}
+          numTo={numTo}
+          total={total}
+          pagePrevious={pagePrevious}
+          pageNext={pageNext}
+        ></Pagination>
       </div>
       <FooterMenu />
     </>

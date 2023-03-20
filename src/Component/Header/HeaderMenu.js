@@ -50,7 +50,6 @@ export const RecipeHeader = ({data}) => {
               </div>
               <div className="row">
                 <a className="navtext text-black" href="/">
-                  10 Recipes
                 </a>
               </div>
             </div>
@@ -75,7 +74,7 @@ export const RecipeHeader = ({data}) => {
   );
 };
 
-export const ProfileHeader = () => {
+export const ProfileHeader = ({total}) => {
   const newDate = new Date()
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const today = newDate.toLocaleString('id-ID', options);
@@ -108,7 +107,7 @@ export const ProfileHeader = () => {
                   className="navtext text-black"
                   style={{ textDecoration: "none" }}
                 >
-                  10 Recipes
+                  {total} Recipes
                 </div>
               </div>
             </div>
