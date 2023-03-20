@@ -7,6 +7,11 @@ const imageStyle = {
 
 export const RecipeHeader = ({data}) => {
 
+  if(!data){
+    return(
+      <div className="spinner-border text-warning ms-5 mt-5" role="status"></div>
+    )
+  }
   const [obj] = data.map(item=>item)
   const author = obj.author;
   const user_photo = obj.user_photo;
