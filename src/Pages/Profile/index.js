@@ -22,9 +22,6 @@ export default function Profile() {
   const [numFrom, setNumFrom] = useState()
   const [numTo, setNumTo] = useState()
 
-
-
-
   const confirmDelete = (id) => {
     setSelected(id);
     handleShow();
@@ -44,7 +41,9 @@ export default function Profile() {
   const deleteData = (id) => {
     dispatch(deleteRecipe(id)).then(()=>{
       handleClose()
+      setPage(1)
       dispatch(getUserRecipe())
+      window.scrollTo(0, 0);
     })
   };
 

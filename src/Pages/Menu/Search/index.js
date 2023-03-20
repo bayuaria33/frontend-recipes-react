@@ -34,6 +34,7 @@ export default function Home() {
 
   const handleSort = () => {
     setSort("desc");
+    setPage(1)
   };
 
   const handleSearch = (e) => {
@@ -41,7 +42,8 @@ export default function Home() {
   };
 
   const searchHandler = () => {
-    setSearch(searchTxt);
+    setSearch(searchTxt)
+    setPage(1)
   };
 
   const pageNext = () => {
