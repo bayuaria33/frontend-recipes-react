@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 export default function NavbarMenu() {
   const imageStyle = {
     maxWidth: "64px",
-    borderRadius: "50%",
+    maxHeight: "64px",
+    borderRadius: "16px",
   };
   const name = localStorage.getItem("name");
   const photo = localStorage.getItem("photo");

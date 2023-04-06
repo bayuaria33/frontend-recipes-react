@@ -44,7 +44,7 @@ export const RecipeProfile = ({ data, confirmDelete }) => {
                       style={{
                         maxWidth: "64px",
                         maxHeight: "64px",
-                        borderRadius: "50%",
+                        borderRadius: "16px",
                       }}
                     />
                     {item.author}
@@ -116,7 +116,7 @@ export const RecipeSearch = ({ data }) => {
                       style={{
                         maxWidth: "64px",
                         maxHeight: "64px",
-                        borderRadius: "50%",
+                        borderRadius: "16px",
                       }}
                     />
                     {item.author}

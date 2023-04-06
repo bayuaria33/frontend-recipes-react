@@ -23,7 +23,7 @@ export function Landing1() {
             </h1>
             <Link
               to={"/search"}
-              className="text-start btn btn-light w-100 mt-3"
+              className="text-start btn btn-dark w-100 mt-3"
             >
               Search Restaurants, Foods 
             </Link>
@@ -33,7 +33,7 @@ export function Landing1() {
       <div className="col-4 d-flex justify-content-end yellow-gradient-right-big p-5">
         <img
           alt=""
-          src="https://s3-alpha-sig.figma.com/img/2ca7/faff/4da51338c06dd21688b82eae3bc9dfa6?Expires=1679875200&Signature=HEVk4xg-AwPwnN43Czr87HdeH-vuTEtYmNdsaMc2nnuMHZw0syBJ1lT6yHSxz6qThnsbqsb8CIixTfzvPBspzd5cvcRZaw295ECK5ytB3xKgv4de9iKtH-zu83coufYjXunpjWQwfE4evCk0gOjjhl4MKYdPLFNuRCZEXIq2m~MG-SpJ4ThUj~9RBbUWC1c4sS~e49CveebDQqxzs2yCfHYKkZj~4egBPKdjqsEhJ8AWWNOIm3NZwPGX0Y3R2oyWj~KdfIPMbMEfGHbd3Ffgck0qIQWcAos6I4cEdbIAPuDMoBH2glSuGD7xbfobDF8ipEIf0FMz1whQtf0Dw43EoA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+          src="https://res.cloudinary.com/dedas1ohg/image/upload/v1680575811/recipes_images/96bbf7e44d119d80a61c4894c5c96c74_ibqm5a.jpg"
           className="rounded"
           style={imageStyle}
         />
@@ -53,7 +53,7 @@ export function Landing2() {
       <div className="col-5 d-flex yellow-gradient-right-big p-5">
         <img
           alt=""
-          src="https://s3-alpha-sig.figma.com/img/e20b/679e/52207741d95649c4cb58a57ba663027f?Expires=1679875200&Signature=RH7qzm6g2NwxGmCLnkd1cAjSPYDr5~oGAVUf2ZS7okXSvKQV0Qv3NKetVSKNkocxU69Fbs6u43m6~G~5axqqkCN5dn15o8hAA0kNf3G-kfFNm8LgJacZRui0RutOWawG1mSSG0kAa9oagf9mjXe121QETBvJGgjeKYjLWRo3qu5roRZ5F2wYzkEcXnPp8ikVoKg-LYWUS4SvpUVQmeoOBp6ZHkPasQQvuu~zjofcganSLlTyCgkq9KnPddZsGB7G~bQhMn1hIF3uZbcGPsZmlbTeRy3NO0O1Aw0LYq-hJ4Yv513s7h2VUwMuVa2vBpw3iifLDIwqnH2~zPsguq-V3w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+          src="https://res.cloudinary.com/dedas1ohg/image/upload/v1680744844/recipes_images/bb6555764d018e0687640abdfde17ba9_l5u6po.jpg"
           className="rounded col"
           style={imageStyle}
         />
@@ -78,23 +78,23 @@ export function Landing3() {
 
   return (
 <section className="d-flex flex-wrap mx-auto" style={{maxWidth : "1080px"}}>
-  <div className="col-4 p-3">
-    <img className="rounded" src='https://s3-alpha-sig.figma.com/img/bde4/c043/7c36ec9fa871caac4eb5b3658eea9aaa?Expires=1679875200&Signature=ZwQF-egmBCRYaG5dGUpix-af1lMHZTzJcDm4YXdthiiQqqPCdC0q1rbwqu4xo~BicxTKmUcKzCI69e3hL57S8L~h4GoGjOExP4AweUuRcSGwVptj75VF82aw9gK0bsomnUVOhBI7JKWRnNZIePbMqYVOK0yBetUDf52lEUHNMKxJg1ED5SIz8QlDZskMU-c7m0J5AcmO3M1vealZtCA9P972OgY2hYlLLBUv7wN87v1gWmk-a1fRHfO-H3Xflrf4Fp5wP9URGNBXBRCBNbuzkm5v92qprn0Fh6hItYX~QZ5XZuC-dBC7~F8Qk1Yf5kqqc1uy~fs-C874q5I54YPIsw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4' alt='' style={imageStyle}/>
+  <div className="col-4 p-3" style={{maxHeight: "1080px"}}>
+    <img className="rounded" src='https://res.cloudinary.com/dedas1ohg/image/upload/v1680575810/recipes_images/9d38bac836d2d3d98930f6fc722bfdec_fnb5vs.jpg' alt='' style={imageStyle}/>
   </div>
-  <div className="col-4 p-3">
-    <img className="rounded" src='https://s3-alpha-sig.figma.com/img/bde4/c043/7c36ec9fa871caac4eb5b3658eea9aaa?Expires=1679875200&Signature=ZwQF-egmBCRYaG5dGUpix-af1lMHZTzJcDm4YXdthiiQqqPCdC0q1rbwqu4xo~BicxTKmUcKzCI69e3hL57S8L~h4GoGjOExP4AweUuRcSGwVptj75VF82aw9gK0bsomnUVOhBI7JKWRnNZIePbMqYVOK0yBetUDf52lEUHNMKxJg1ED5SIz8QlDZskMU-c7m0J5AcmO3M1vealZtCA9P972OgY2hYlLLBUv7wN87v1gWmk-a1fRHfO-H3Xflrf4Fp5wP9URGNBXBRCBNbuzkm5v92qprn0Fh6hItYX~QZ5XZuC-dBC7~F8Qk1Yf5kqqc1uy~fs-C874q5I54YPIsw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4' alt='' style={imageStyle}/>
+  <div className="col-4 p-3" style={{maxHeight: "1080px"}}>
+    <img className="rounded" src='https://res.cloudinary.com/dedas1ohg/image/upload/v1680744846/recipes_images/ec253e0e662a4e3aa070cee5202021e3_ciyg3n.jpg' alt='' style={imageStyle}/>
   </div>
-  <div className="col-4 p-3">
-    <img className="rounded" src='https://s3-alpha-sig.figma.com/img/bde4/c043/7c36ec9fa871caac4eb5b3658eea9aaa?Expires=1679875200&Signature=ZwQF-egmBCRYaG5dGUpix-af1lMHZTzJcDm4YXdthiiQqqPCdC0q1rbwqu4xo~BicxTKmUcKzCI69e3hL57S8L~h4GoGjOExP4AweUuRcSGwVptj75VF82aw9gK0bsomnUVOhBI7JKWRnNZIePbMqYVOK0yBetUDf52lEUHNMKxJg1ED5SIz8QlDZskMU-c7m0J5AcmO3M1vealZtCA9P972OgY2hYlLLBUv7wN87v1gWmk-a1fRHfO-H3Xflrf4Fp5wP9URGNBXBRCBNbuzkm5v92qprn0Fh6hItYX~QZ5XZuC-dBC7~F8Qk1Yf5kqqc1uy~fs-C874q5I54YPIsw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4' alt='' style={imageStyle}/>
+  <div className="col-4 p-3" style={{maxHeight: "1080px"}}>
+    <img className="rounded" src='https://res.cloudinary.com/dedas1ohg/image/upload/v1680744847/recipes_images/cd160da3e1426c3f659218e145224ffc_dtc05i.jpg' alt='' style={imageStyle}/>
   </div>
-  <div className="col-4 p-3">
-    <img className="rounded" src='https://s3-alpha-sig.figma.com/img/bde4/c043/7c36ec9fa871caac4eb5b3658eea9aaa?Expires=1679875200&Signature=ZwQF-egmBCRYaG5dGUpix-af1lMHZTzJcDm4YXdthiiQqqPCdC0q1rbwqu4xo~BicxTKmUcKzCI69e3hL57S8L~h4GoGjOExP4AweUuRcSGwVptj75VF82aw9gK0bsomnUVOhBI7JKWRnNZIePbMqYVOK0yBetUDf52lEUHNMKxJg1ED5SIz8QlDZskMU-c7m0J5AcmO3M1vealZtCA9P972OgY2hYlLLBUv7wN87v1gWmk-a1fRHfO-H3Xflrf4Fp5wP9URGNBXBRCBNbuzkm5v92qprn0Fh6hItYX~QZ5XZuC-dBC7~F8Qk1Yf5kqqc1uy~fs-C874q5I54YPIsw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4' alt='' style={imageStyle}/>
+  <div className="col-4 p-3" style={{maxHeight: "1080px"}}>
+    <img className="rounded" src='https://res.cloudinary.com/dedas1ohg/image/upload/v1680744847/recipes_images/cd160da3e1426c3f659218e145224ffc_dtc05i.jpg' alt='' style={imageStyle}/>
   </div>
-  <div className="col-4 p-3">
-    <img className="rounded" src='https://s3-alpha-sig.figma.com/img/bde4/c043/7c36ec9fa871caac4eb5b3658eea9aaa?Expires=1679875200&Signature=ZwQF-egmBCRYaG5dGUpix-af1lMHZTzJcDm4YXdthiiQqqPCdC0q1rbwqu4xo~BicxTKmUcKzCI69e3hL57S8L~h4GoGjOExP4AweUuRcSGwVptj75VF82aw9gK0bsomnUVOhBI7JKWRnNZIePbMqYVOK0yBetUDf52lEUHNMKxJg1ED5SIz8QlDZskMU-c7m0J5AcmO3M1vealZtCA9P972OgY2hYlLLBUv7wN87v1gWmk-a1fRHfO-H3Xflrf4Fp5wP9URGNBXBRCBNbuzkm5v92qprn0Fh6hItYX~QZ5XZuC-dBC7~F8Qk1Yf5kqqc1uy~fs-C874q5I54YPIsw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4' alt='' style={imageStyle}/>
+  <div className="col-4 p-3" style={{maxHeight: "1080px"}}>
+    <img className="rounded" src='https://res.cloudinary.com/dedas1ohg/image/upload/v1680575810/recipes_images/9d38bac836d2d3d98930f6fc722bfdec_fnb5vs.jpg' alt='' style={imageStyle}/>
   </div>
-  <div className="col-4 p-3">
-    <img className="rounded" src='https://s3-alpha-sig.figma.com/img/bde4/c043/7c36ec9fa871caac4eb5b3658eea9aaa?Expires=1679875200&Signature=ZwQF-egmBCRYaG5dGUpix-af1lMHZTzJcDm4YXdthiiQqqPCdC0q1rbwqu4xo~BicxTKmUcKzCI69e3hL57S8L~h4GoGjOExP4AweUuRcSGwVptj75VF82aw9gK0bsomnUVOhBI7JKWRnNZIePbMqYVOK0yBetUDf52lEUHNMKxJg1ED5SIz8QlDZskMU-c7m0J5AcmO3M1vealZtCA9P972OgY2hYlLLBUv7wN87v1gWmk-a1fRHfO-H3Xflrf4Fp5wP9URGNBXBRCBNbuzkm5v92qprn0Fh6hItYX~QZ5XZuC-dBC7~F8Qk1Yf5kqqc1uy~fs-C874q5I54YPIsw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4' alt='' style={imageStyle}/>
+  <div className="col-4 p-3" style={{maxHeight: "1080px"}}>
+    <img className="rounded" src='https://res.cloudinary.com/dedas1ohg/image/upload/v1680575810/recipes_images/40261c035eed315afdc149ee073393ea_ng6nb3.jpg' alt='' style={imageStyle}/>
   </div>
 </section>
   );

@@ -2,7 +2,8 @@ import React from "react";
 
 const imageStyle = {
   maxWidth: "64px",
-  borderRadius: "50%",
+  maxHeight: "64px",
+  borderRadius: "16px",
 };
 
 export const RecipeHeader = ({data}) => {
