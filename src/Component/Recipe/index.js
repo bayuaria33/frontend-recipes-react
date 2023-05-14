@@ -31,7 +31,7 @@ export const RecipeProfile = ({ data, confirmDelete }) => {
                 <div className="bg-warning text-center text-white p-1 rounded">
                   10 Likes - 12 Comments - 10 Bookmarks
                 </div>
-                <div className="col-5">
+                <div className="flex col">
                   <label className="text-content">
                     <img
                       className="me-3 my-3"
@@ -103,7 +103,7 @@ export const RecipeSearch = ({ data }) => {
                 <div className="bg-warning text-center text-white p-1 rounded">
                   10 Likes - 12 Comments - 10 Bookmarks
                 </div>
-                <div className="col-5">
+                <div className="flex col">
                   <label className="text-content">
                     <img
                       className="me-3 my-3"
