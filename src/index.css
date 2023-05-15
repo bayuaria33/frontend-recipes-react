@@ -120,6 +120,12 @@ min-height: 350px;
 background: #EFC81A;
 }
 
+#nav-dropdown{
+  color: white;
+  font-weight: bold;
+  background-color: white;
+}
+
 /* Media queries for testing responsive view ports */
 /* @media (min-width: 576px) {
   body::before {
