@@ -1,4 +1,6 @@
 import { React } from "react";
+import { Nav, NavDropdown } from "react-bootstrap";
+import { BiMenu } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 export default function NavbarMenu() {
   const imageStyle = {
@@ -139,5 +141,44 @@ export function NavbarProfile() {
         </div>
       </div>
     </div>
+  );
+}
+
+export function NavbarMobile() {
+  const name = localStorage.getItem("name");
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.clear();
+    window.location.reload(false);
+    navigate("/home");
+  };
+  const handleSelect = (eventKey) => navigate(`${eventKey}`);
+  const NavDropdownTitle = <BiMenu className="text-warning" size={32} />;
+  return (
+    <Nav
+      variant="pills"
+      activeKey="1"
+      onSelect={handleSelect}
+      className="justify-content-end btn-warning d-lg-none d-xl-none"
+      style={{ height: "10vh" }}
+    >
+      <NavDropdown title={NavDropdownTitle} id="nav-dropdown">
+        {name ? (
+          <>
+            <NavDropdown.Item eventKey="/home">Home</NavDropdown.Item>
+            <NavDropdown.Item eventKey="/add">Add Recipe</NavDropdown.Item>
+            <NavDropdown.Item eventKey="/search">Search</NavDropdown.Item>
+            <NavDropdown.Item eventKey="/profile">Profile</NavDropdown.Item>
+            <NavDropdown.Item onClick={() => logout()}>Logout</NavDropdown.Item>
+          </>
+        ) : (
+          <>
+            <NavDropdown.Item eventKey="/login">Login</NavDropdown.Item>
+            <NavDropdown.Item eventKey="/register">Register</NavDropdown.Item>
+          </>
+        )}
+      </NavDropdown>
+    </Nav>
   );
 }

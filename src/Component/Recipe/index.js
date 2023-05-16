@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 export const RecipeProfile = ({ data, confirmDelete }) => {
   return (
     <section>
-      {data.isLoading && <div className="spinner-border text-warning ms-5 mt-5" role="status"></div>}
+      {data.isLoading && (
+        <div
+          className="spinner-border text-warning ms-5 mt-5"
+          role="status"
+        ></div>
+      )}
       {data.data?.map((item, index) => (
         <div key={index + 1}>
           <div className="container mt-5 yellow-gradient-right">
@@ -76,7 +81,12 @@ export const RecipeProfile = ({ data, confirmDelete }) => {
 export const RecipeSearch = ({ data }) => {
   return (
     <section>
-      {data.isLoading && <div className="spinner-border text-warning ms-5 mt-5" role="status"></div>}
+      {data.isLoading && (
+        <div
+          className="spinner-border text-warning ms-5 mt-5"
+          role="status"
+        ></div>
+      )}
       {data.data?.map((item, index) => (
         <div key={index + 1}>
           <div className="container mt-5 yellow-gradient-right">
@@ -123,6 +133,45 @@ export const RecipeSearch = ({ data }) => {
                   </label>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </section>
+  );
+};
+
+export const RecipeSearchMobile = ({ data }) => {
+  return (
+    <section>
+      {data.isLoading && (
+        <div
+          className="spinner-border text-warning ms-5 mt-5"
+          role="status"
+        ></div>
+      )}
+      {data.data?.map((item, index) => (
+        <div key={index + 1} className="container ">
+          <div className="yellow-gradient-right row my-3">
+            <img
+              src={item.photo}
+              alt=""
+              className="img-thumbnail rounded col"
+              style={{ width: "120px", height: "120px" }}
+              loading="lazy"
+            />
+
+            <div className="flex col">
+              <div className="row">
+                <Link
+                  to={`../Menu/Detail/${item.id}`}
+                  style={{ textDecoration: "none", color: "black" }}
+                  className="navtext"
+                >
+                {item.title}
+                </Link>
+              </div>
+              <div className="row">By: {item.author}</div>
             </div>
           </div>
         </div>

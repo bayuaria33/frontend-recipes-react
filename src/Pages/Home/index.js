@@ -1,18 +1,13 @@
 import NavbarMenu from "../../Component/Navbar/NavbarMenu";
-import FooterMenu from "../../Component/Footer";
+import FooterMenu, { FooterMobile } from "../../Component/Footer";
 import { Landing1 } from "../../Component/Landing/landingMenu";
 import { Landing2 } from "../../Component/Landing/landingMenu";
 import { Landing3 } from "../../Component/Landing/landingMenu";
-import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { BiMenu } from "react-icons/bi";
-import { Link, useNavigate } from "react-router-dom";
+import { NavbarMobile } from "../../Component/Navbar/NavbarMenu";
+
+import { Link } from "react-router-dom";
 
 export default function Home() {
-  const navigate = useNavigate();
-
-  const handleSelect = (eventKey) => navigate(`${eventKey}`);
-  const NavDropdownTitle = <BiMenu className="text-warning" size={32} />;
   return (
     <>
       <div className="container text-poppins ms-5 d-none d-sm-block">
@@ -43,25 +38,9 @@ export default function Home() {
       {/* mobile */}
       <div
         className="container d-lg-none d-xl-none p-2"
-        style={{maxWidth: "100vh" }}
+        style={{ maxWidth: "100vh" }}
       >
-        <Nav
-          variant="pills"
-          activeKey="1"
-          onSelect={handleSelect}
-          className="justify-content-end btn-warning"
-          style={{ height: "10vh" }}
-        >
-          <NavDropdown
-            title={NavDropdownTitle}
-            id="nav-dropdown"
-          >
-            <NavDropdown.Item eventKey="/home">Home</NavDropdown.Item>
-            <NavDropdown.Item eventKey="/add">Add Recipe</NavDropdown.Item>
-            <NavDropdown.Item eventKey="/search">Search</NavDropdown.Item>
-            <NavDropdown.Item eventKey="/profile">Profile</NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
+        <NavbarMobile />
         <div
           className="container yellow-gradient-right-big"
           style={{ height: "30vh" }}
@@ -75,7 +54,9 @@ export default function Home() {
         </div>
         <div className="container mt-3" style={{ height: "50vh" }}>
           <div className="yellow-gradient-left">
-            <h1 className="display-3 text-poppins-large text-black mx-3">Popular For You!</h1>
+            <h1 className="display-3 text-poppins-large text-black mx-3">
+              Popular For You!
+            </h1>
           </div>
           <img
             alt=""
@@ -93,7 +74,9 @@ export default function Home() {
         </div>
         <div className="container mt-3" style={{ height: "50vh" }}>
           <div className="yellow-gradient-left">
-            <h1 className="display-3 text-poppins-large text-black mx-3">New Recipe</h1>
+            <h1 className="display-3 text-poppins-large text-black mx-3">
+              New Recipe
+            </h1>
           </div>
           <img
             alt=""
@@ -109,23 +92,9 @@ export default function Home() {
             Learn More
           </button>
         </div>
+      </div>
 
-      </div>
-      
-      <div className="d-lg-none d-xl-none d-flex flex-column yellow-footer px-2 mx-0 align-items-center justify-content-center absolute">
-        <p className="display-2 text-center mt-5">Eat, Cook, Repeat</p>
-        <p className="text-center mt-2 text-content">
-          Share your best recipe by uploading here !
-        </p>
-        <div className="d-flex justify-content-center align-items-center mt-5">
-          <a href="/" className="link-secondary mx-3 text-dark">
-            Learn more
-          </a>
-          <a href="/" className="link-secondary mx-3 text-dark">
-            Pijar Camp
-          </a>
-        </div>
-      </div>
+      <FooterMobile />
     </>
   );
 }
