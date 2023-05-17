@@ -1,22 +1,45 @@
 const initialState = {
   data: null,
   isLoading: false,
+  isError: false,
+  isSuccess: false,
 };
 
-const userReducer = (state = initialState, action) => {
-  if (action.type === "USER_LOGIN_PENDING") {
-    return {
-      ...state,
-      isLoading: true,
-    };
-  } else if (action.type === "USER_LOGIN_SUCCESS") {
-    return {
-      ...state,
-      data: action.payload,
-      isLoading: false,
-    };
-  } else {
-    return state;
+const userReducer = (state = initialState, {type, payload}) => {
+  switch (type) {
+    case 'USER_LOGIN_PENDING':
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+        isSuccess: false,
+      };
+    case 'USER_LOGIN_SUCCESS':
+      return {
+        ...state,
+        data: payload,
+        isLoading: false,
+        isError: false,
+        isSuccess: true,
+      };
+    case 'USER_LOGIN_ERROR':
+      return {
+        ...state,
+        data: payload,
+        isLoading: false,
+        isError: true,
+        isSuccess: false,
+      };
+    case 'DELETE_STORE_TOKEN':
+      return {
+        ...state,
+        data: null,
+        isLoading: false,
+        isError: false,
+        isSuccess: true,
+      };
+    default:
+      return state;
   }
 };
 

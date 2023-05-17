@@ -13,6 +13,7 @@ export const loginUser = (data,navigate) => async (dispatch)=> {
         navigate('/home')
         console.log("User Login success");
     } catch(err){
+    dispatch({type: 'USER_LOGIN_ERROR'});
         console.log("User Login failed")
         console.log(err)
     }
@@ -28,6 +29,7 @@ export const registerUser = (data,navigate) => async(dispatch) =>{
         navigate('/login')
         console.log("User Register success");
     } catch (err) { 
+    dispatch({type: 'USER_REGISTER_ERROR'});
         console.log("User Register failed");
         console.log(err);
     }

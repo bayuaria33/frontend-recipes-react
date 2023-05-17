@@ -2,9 +2,12 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { registerUser } from "../../Storage/Action/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Alert from "react-bootstrap/Alert";
+
 
 export default function Register() {
+  const regis_state = useSelector((state) => state.regisReducer);
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -25,37 +28,6 @@ export default function Register() {
     dispatch(registerUser(data, navigate));
   };
 
-
-  // const [credential, setCredential] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  // });
-
-  // const handleChange = (e) => {
-  //   setCredential({
-  //     ...credential,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
-  // const registerForm = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post(url, credential, {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log("Register success");
-  //       console.log(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("Register fail");
-  //       console.log(err);
-  //     });
-  // };
 
   return (
     <div className="container pale-bg">
@@ -115,6 +87,17 @@ export default function Register() {
                     I agree to terms & conditions
                   </label>
                 </div>
+                {regis_state.isLoading && (
+                  <div className="d-flex justify-content-center">
+                    <div
+                      className="spinner-border text-warning my-3"
+                      role="status"
+                    ></div>
+                  </div>
+                )}
+                {regis_state.isError && (
+                  <Alert variant="danger">Registration Failed, please try again</Alert>
+                )}
                 <div className="d-flex">
                   <button
                     className="btn btn-warning w-100 text-white"
@@ -132,7 +115,7 @@ export default function Register() {
               <div className="form-group text-center">
                 <label>
                   Already have an account?
-                  <Link to={"/login"} style={{ color: "#efc81a" }}>
+                  <Link to={"/login"} style={{ color: "#efc81a" }} className="ms-1">
                     Login here
                   </Link>
                 </label>

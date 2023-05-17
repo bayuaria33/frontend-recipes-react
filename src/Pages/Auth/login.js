@@ -1,58 +1,25 @@
 import React from "react";
-import { useState} from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../Storage/Action/auth";
+import Alert from "react-bootstrap/Alert";
 
-// let url = `${process.env.REACT_APP_API_URL}/auth/login/`;
-//sct47890@nezid.com, dxc80943@omeie.com
-//123
 export default function Login() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const [email,setEmail] = useState('')
-  const [password,setPassword] = useState('')
+  const user_state = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // const[credential, setCredential] = useState({
-  //   email:"",
-  //   password:""
-  // })
-
-  // const handleChange = (e) => {
-  //   setCredential({
-  //     ...credential,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
-  // const loginForm = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post(url, credential, {
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log("Login success");
-  //       console.log(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("Login fail");
-  //       console.log(err);
-  //     });
-  // };
-
-  const postData = (e) =>{
-    e.preventDefault()
-    console.log(email)
-    console.log(password)
+  const postData = (e) => {
+    e.preventDefault();
     let data = {
-      email, password
-    }
-    dispatch(loginUser(data,navigate))
-}
-
+      email,
+      password,
+    };
+    dispatch(loginUser(data, navigate));
+  };
 
   return (
     <div className="container pale-bg">
@@ -72,7 +39,7 @@ export default function Login() {
                     className="form-control"
                     placeholder="Enter your email"
                     name="email"
-                    onChange={(e)=>setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
@@ -83,7 +50,7 @@ export default function Login() {
                     className="form-control "
                     placeholder="Enter your password"
                     name="password"
-                    onChange={(e)=>setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </div>
@@ -95,9 +62,20 @@ export default function Login() {
                       style={{ accentColor: "#efc81a" }}
                       required
                     />
-                     I agree to terms & conditions
+                    I agree to terms & conditions
                   </label>
                 </div>
+                {user_state.isLoading && (
+                  <div className="d-flex justify-content-center">
+                    <div
+                      className="spinner-border text-warning my-3"
+                      role="status"
+                    ></div>
+                  </div>
+                )}
+                {user_state.isError && (
+                  <Alert variant="danger">Wrong Email / Password</Alert>
+                )}
                 <div className="d-flex">
                   <button
                     href="/landing/landing.html"
@@ -113,7 +91,9 @@ export default function Login() {
               <div className="form-group text-center">
                 <label>
                   Don't have an account?{" "}
-                  <Link to={"/register"} style={{color: "#efc81a"}}>Register</Link>
+                  <Link to={"/register"} style={{ color: "#efc81a" }}>
+                    Register
+                  </Link>
                 </label>
               </div>
             </div>

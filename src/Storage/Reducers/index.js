@@ -8,8 +8,9 @@ import edit_recipe from "./editRecipeReducer";
 import get_detail from "./getDetailRecipeReducer";
 import get_recipe_count from "./getTotalRecipeReducer";
 import get_my_recipe_count from "./getMyTotalRecipeReducer";
+import regisReducer from "./regisReducer";
 const rootReducers = combineReducers({
-  user: userReducer, get_recipe, delete_recipe,profile_recipe,add_recipe,edit_recipe, get_detail, get_recipe_count, get_my_recipe_count
+  user: userReducer, get_recipe, delete_recipe,profile_recipe,add_recipe,edit_recipe, get_detail, get_recipe_count, get_my_recipe_count, regisReducer
 });
 
 export default rootReducers;
