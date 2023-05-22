@@ -82,6 +82,20 @@ Before going to the installation stage there are some software that must be inst
 ## Tech Stack
 This web app was built with: ReactJS, ExpressJS, PostgreSQL, React, Redux,  NodeJS, React-Bootstrap,  Axios, JWT 
 
+<br></br>
+
+## Demo User Account
+<details>
+<summary>Show Demo Account</summary>
+
+
+**Email** : dxc80943@omeie.com
+
+**Password** : 123
+</details>
+
+<br></br>
+
 ## Installation
 
 Clone the project
@@ -140,6 +154,8 @@ REACT_APP_API_URL=
 
 </details>
 
+<br></br>
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -157,7 +173,7 @@ Contributions are what make the open source community such an amazing place to b
     <tr>
       <td align="center">
         <a href="https://github.com/bayuaria33">
-          <img width="100" src="https://avatars.githubusercontent.com/u/60177161?v=4" alt="Bayu"><br/>
+          <img width="100" src="https://github.com/bayuaria33.png" alt="Bayu"><br/>
           <sub><b>Ariabayu Prayogo Kamilain</b></sub> <br/>
           <sub>Bayuaria33@gmail.com</sub> <br/>
         </a>
