@@ -89,7 +89,7 @@ This web app was built with: ReactJS, ExpressJS, PostgreSQL, React, Redux,  Node
 <summary>Show Demo Account</summary>
 
 
-**Email** : dxc80943@omeie.com
+**Email** : ivb05485@nezid.com
 
 **Password** : 123
 </details>
